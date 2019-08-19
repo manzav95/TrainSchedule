@@ -28,7 +28,7 @@ var config = {
           name,
           destination,
           time,
-          reccurence: `${reccurence} mins`
+          reccurence
       });
 
       $("#train-name").val("");
@@ -43,12 +43,17 @@ var config = {
         $("#destination").text(snapshot.val().destination)
         $("#first-train").text(snapshot.val().time)
         $("#frequency").text(snapshot.val().reccurence)
-        
+
+        let nameVal = snapshot.val().name;
+        let destVal = snapshot.val().name;
+        let timeVal = snapshot.val().name;
+        let reccVal = snapshot.val().reccurence;
+
         let remainder = moment().diff(moment(time,"X"),"minutes") % reccurence;
         let minutes = reccurence - remainder;
         let arrival = moment().add(minutes,"minutes").format("hh:mm A")
         let newTr = $("<tr>")
-        newTr.html(`<td>${name}</td><td>${destination}</td><td>${reccurence}</td><td>${arrival}</td><td>${minutes}</td>`)
+        newTr.html(`<td>${nameVal}</td><td>${destVal}</td><td>${reccVal}</td><td>${arrival}</td><td>${minutes}</td>`)
         $("#main-holder").append(newTr)
     
     })
